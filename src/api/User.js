@@ -4,7 +4,7 @@ export default {
   base: '/user',
 
   allUsers () {
-    return axios.get(`${this.base}/alluser`)
+    return axios.get(`${this.base}/allUsers`)
   },
 
   userById (id) {
