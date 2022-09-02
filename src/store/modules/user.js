@@ -6,12 +6,14 @@ import * as types from '../mutation-types'
 
 // STATE
 const state = {
-  users: []
+  items: [],
+  item: []
 }
 
 // GETTERS
 const getters = {
-  users: state => state.users
+  items: state => state.items,
+  item: state => state.item
 }
 
 // ACTIONS
@@ -24,16 +26,19 @@ const actions = {
   },
 
   fetchUserById ({state, commit, dispatch}, id) {
-    ApiUser.userById(id).then((response) => {
-      commit(types.USER_ADD, response.data.data)
-    })
+    // ApiUser.userById(id).then((response) => {
+    commit(types.USER_ADD_ID, id)
+    // })
   }
 }
 
 // MUTATIONS - Permet de modifier l'état des objets du "State"
 const mutations = {
-  [types.USER_ADD] (state, pUsers) {
-    state.users = pUsers
+  [types.USER_ADD] (state, data) {
+    state.items = data
+  },
+  [types.USER_ADD_ID] (state, data) {
+    state.item = state.items.filter((item) => item.id === data)
   }
 }
 

@@ -15,6 +15,10 @@ export default {
     return axios.post(`${this.base}/save`, pointing)
   },
 
+  validatePointing (request) {
+    return axios.put(`${this.base}/validatePointing`, request)
+  },
+
   deletePointing (id) {
     return axios.post(`${this.base}/${id}`)
   },
