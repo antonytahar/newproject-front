@@ -6,8 +6,8 @@
     <router-link class="btn btn-success faa-parent animated-hover" :to="{ name: 'countries-create'}">
       <i class="fas fa-plus-circle"></i> Nouveau pays
     </router-link>
-    <router-link class="btn btn-success faa-parent animated-hover" :to="{ name: 'countries-create'}">
-      <i class="fas fa-eye"></i> Accéder au projet Pointages
+    <router-link class="btn btn-success faa-parent animated-hover" :to="{ name: 'pointings-table'}">
+      <i class="fas fa-eye"></i> Accéder au projet pointages
     </router-link>
     <v-client-table :data="testData" :columns="columns" :options="options">
       <template slot="country" slot-scope="props">

@@ -20,13 +20,13 @@
             <label for="name" class="col-3 col-form-label">Date</label>
             <input v-model="form.date" type="date" class="col-9 form-control" id="date">
           </div>
-          <div class="form-group row"> <!-- Statut -->
+          <!-- <div class="form-group row">  Statut 
             <label for="name" class="col-3 col-form-label">Statut</label>
             <input v-model="form.status" type="text" class="col-9 form-control" id="status">
-          </div>
+          </div> -->
           <div class="form-group row"> <!-- Utilisateur -->
             <label for="name" class="col-3 col-form-label">Utilisateur</label>
-            <select v-model="form.user"> 
+            <select v-model="form.user">
               <option v-for="user in users" v-bind:key="user.id" v-bind:value="user.id">{{user.name}}</option>
             </select>
           </div>
@@ -46,11 +46,12 @@ export default {
   data () { // Donnée à utiliser
     return {
       form: {
-        title: null,
+        title: 'Nouveau Pointage',
         duration: null,
         date: null,
-        status: null,
+        status: '1',
         user: null
+
       },
       rules: {
         required: value => !!value || 'Required.'
