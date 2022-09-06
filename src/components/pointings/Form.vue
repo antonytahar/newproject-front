@@ -46,7 +46,7 @@ export default {
   data () { // Donnée à utiliser
     return {
       form: {
-        title: 'Nouveau Pointage',
+        title: null,
         duration: null,
         date: null,
         status: '1',
@@ -66,13 +66,13 @@ export default {
 
   mounted () { // Lorsque le HTML est interpreté
     this.$store.dispatch('user/fetchUsers')
-    if (this.pointing) {
-      this.form.title = this.pointing[0]['title']
-      this.form.duration = this.pointing[0]['duration']
-      this.form.date = this.pointing[0]['date']
-      this.form.status = this.pointing[0]['status']
-      this.form.user = this.pointing[0]['user']['id']
-    }
+    // if (this.pointing) {
+    //   this.form.title = this.pointing[0]['title']
+    //   this.form.duration = this.pointing[0]['duration']
+    //   this.form.date = this.pointing[0]['date']
+    //   this.form.status = this.pointing[0]['status']
+    //   this.form.user = this.pointing[0]['user']['id']
+    // }
   },
 
   methods: {

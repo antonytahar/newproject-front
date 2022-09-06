@@ -69,11 +69,11 @@ export default {
       })
     },
     deleteOnClick (pointingid) {
-      // this.$store.dispatch('pointing/deletePointing', pointingid).then((res) => {
-      //   if (!res.data.error) {
-      //     this.$router.push('table')
-      //   }
-      // })
+      this.$store.dispatch('pointing/deletePointing', pointingid).then((res) => {
+        if (!res.data.error) {
+          this.$router.push('table')
+        }
+      })
     }
   }
 }
