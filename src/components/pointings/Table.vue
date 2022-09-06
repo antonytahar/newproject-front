@@ -14,7 +14,7 @@
         <!-- <router-link class="btn btn-primary faa-parent animated-hover" :to="{ name: 'pointings-card', params: {pointingid: props.row['id']}}">
           <i class="far fa-eye faa-flash"></i> Fiche
         </router-link> -->
-        <button class="btn btn-success faa-parent animated-hover" @click="validateOnClick(props.row['id'], props.row['status'])">
+        <button class="btn btn-success faa-parent animated-hover" v-show="props.row['status']===1" @click="validateOnClick(props.row['id'], props.row['status'])">
           <i class="fas fa-check-circle"></i> Valider
         </button>
         <button class="btn btn-danger faa-parent animated-hover" @click="deleteOnClick(props.row['id'])">
@@ -58,6 +58,9 @@ export default {
     testData () {
       return this.$store.getters['pointing/items']
     }
+  },
+
+  updated () {
   },
 
   methods: {

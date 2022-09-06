@@ -43,7 +43,7 @@ const actions = {
       ApiPointing.validatePointing(request).then((response) => {
         if (!response.data.error) {
           resolve(response)
-          commit(types.POINTING_DEL_ID, response.data.data)
+          commit(types.POINTING_ADD, response.data.data)
         }
       })
     })
@@ -69,7 +69,6 @@ const mutations = {
     state.item = state.items.filter((item) => item.id === data)
   },
   [types.POINTING_DEL_ID] (state, data) {
-    console.log('la data ' + data)
     const index = state.items.findIndex((item) => item.id === parseInt(data))
     if (index !== -1) {
       state.items.splice(index, 1)
