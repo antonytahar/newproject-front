@@ -1,6 +1,6 @@
 import ApiPointing from '@/api/Pointing'
 import * as types from '../mutation-types'
-// import Vue from 'vue'
+import Vue from 'vue'
 
 // CONSTANTES
 
@@ -43,7 +43,7 @@ const actions = {
       ApiPointing.validatePointing(request).then((response) => {
         if (!response.data.error) {
           resolve(response)
-          commit(types.POINTING_ADD, response.data.data)
+          commit(types.POINTING_UPDATE_ID, response.data.data)
         }
       })
     })
@@ -72,6 +72,16 @@ const mutations = {
     const index = state.items.findIndex((item) => item.id === parseInt(data))
     if (index !== -1) {
       state.items.splice(index, 1)
+    }
+  },
+  [types.POINTING_UPDATE_ID] (state, data) {
+    const index = state.items.findIndex((item) => item.id === parseInt(data.id))
+    if (index !== -1) {
+      Vue.set(
+        state.items,
+        index,
+        Object.assign({}, state.items[index], data) // methode qui permet de modifier l'objet complet
+      )
     }
   }
 }

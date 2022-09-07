@@ -7,8 +7,8 @@
       <i class="fas fa-plus-circle"></i> Nouveau pointage
     </router-link>
     <v-client-table :data="testData" :columns="columns" :options="options">
-      <template slot="pointing" slot-scope="props">
-        {{props.row.pointing.name}}
+      <template slot="user" slot-scope="props"> <!-- On nomme ici la donnée que l'on veut afficher dans la table " data.pointing.user.name prendra le nom de 'user' "-->
+        {{props.row.user.name}} <!-- On indique ici la donnée que l'on veut afficher dans la table : "Je veux afficher le data.pointing.user.name" -->
       </template>
       <template slot="Details" slot-scope="props">
         <!-- <router-link class="btn btn-primary faa-parent animated-hover" :to="{ name: 'pointings-card', params: {pointingid: props.row['id']}}">
@@ -20,18 +20,22 @@
         <button class="btn btn-danger faa-parent animated-hover" @click="deleteOnClick(props.row['id'])">
           <i class="fas fa-trash-alt"></i> Supprimer
         </button>
+        <button class="btn btn-primary faa-parent animated-hover" @click="swalOnClick">
+          SWAL
+        </button>
       </template>
     </v-client-table>
   </div>
 </template>
 
 <script>
+import Swal from 'sweetalert2'
 export default {
   data () {
     return {
-      columns: ['id', 'title', 'duration', 'date', 'status', 'user_id', 'Details'],
+      columns: ['id', 'title', 'duration', 'date', 'status', 'user', 'Details'],
       options: {
-        headings: {'id': 'ID', 'title': 'Titre', 'duration': 'Durée', 'date': 'Date', 'status': 'Statut', 'user_id': 'Utilisateur', Details: 'Details'},
+        headings: {'id': 'ID', 'title': 'Titre', 'duration': 'Durée', 'date': 'Date', 'status': 'Statut', 'user': 'Utilisateur', Details: 'Details'},
         skin: 'table-striped table-condensed table-hover',
         filterable: true,
         sortIcon: { base: 'fa', up: 'fa-sort-asc', down: 'fa-sort-desc', is: 'fa-sort' },
@@ -67,16 +71,24 @@ export default {
     validateOnClick (pointingid, status) {
       this.$store.dispatch('pointing/validatePointing', {pointingid: pointingid, status: status}).then((res) => {
         if (!res.data.error) {
-          this.$router.push('table')
+          Swal.fire({
+            icon: 'success',
+            title: 'Le pointage ' + pointingid + ' a été validé',
+            showConfirmButton: false,
+            timer: 1500
+          })
         }
       })
     },
     deleteOnClick (pointingid) {
       this.$store.dispatch('pointing/deletePointing', pointingid).then((res) => {
         if (!res.data.error) {
-          this.$router.push('table')
+          Swal.fire('Any fool can use a computer')
         }
       })
+    },
+    swalOnClick () {
+      Swal.fire('Je suis un SWAL')
     }
   }
 }

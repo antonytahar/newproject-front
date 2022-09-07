@@ -10,8 +10,8 @@
       <i class="fas fa-eye"></i> Accéder au projet pointages
     </router-link>
     <v-client-table :data="testData" :columns="columns" :options="options">
-      <template slot="country" slot-scope="props">
-        {{props.row.country.name}}
+      <template slot="country" slot-scope="props"> <!-- On nomme ici la donnée que l'on veut afficher dans la table " data.city.country.name prendra le nom de 'country' "-->
+        {{props.row.country.name}} <!-- On indique ici la donnée que l'on veut afficher dans la table : "Je veux afficher le data.city.country.name" -->
       </template>
       <template slot="Details" slot-scope="props">
         <router-link class="btn btn-primary faa-parent animated-hover" :to="{ name: 'cities-card', params: {cityid: props.row['id']}}">
